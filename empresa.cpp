@@ -19,11 +19,12 @@ Empresa::getNome()
 	return m_nome;
 }
 
-string
-Empresa::getCnpj()
+int 
+Empresa::getTotalEmpresas()
 {
-	return m_cnpj;
+	return m_total_empresas;
 }
+
 
 void 
 Empresa::addFuncionario()
@@ -43,12 +44,12 @@ Empresa::addFuncionario()
 	}
 	if(existe)
 	{
-		std::cout << "Este funcionário já existe!" << std::endl;
+		std::cout << std::endl << "Este funcionário já existe!" << std::endl;
 	} 
 	else
 	{
 		m_lista_funcionarios.push_back(f);
-		std::cout << "Funcionário adicionado com sucesso!" << std::endl;
+		std::cout << std::endl << "Funcionário adicionado com sucesso!" << std::endl;
 	}
 }
 
@@ -57,7 +58,7 @@ Empresa::listarFuncionarios()
 {
 	if(m_lista_funcionarios.size() > 0)
 	{
-		std::cout << "*** Lista de funcionários da empresa " << m_nome << " ***" << std::endl;
+		std::cout << std::endl << "*** Lista de funcionários da empresa " << m_nome << " ***" << std::endl;
 		for(std::list<Funcionario>::iterator it = m_lista_funcionarios.begin(); it != m_lista_funcionarios.end(); ++it)
 		{
 			std::cout << *it << std::endl;
@@ -65,7 +66,27 @@ Empresa::listarFuncionarios()
 	}
 	else
 	{
-		std::cout << "Não há funcionários para listar" << std::endl;
+		std::cout << std::endl << "Não há empresas cadastradas!" << std::endl;
+	}
+}
+
+void 
+Empresa::listarFuncionariosPorCriterio()
+{
+	if(m_lista_funcionarios.size() > 0)
+	{
+		std::cout << std::endl << "*** Lista de funcionários recentemente contratados da empresa " << m_nome << " ***" << std::endl;
+		for(std::list<Funcionario>::iterator it = m_lista_funcionarios.begin(); it != m_lista_funcionarios.end(); ++it)
+		{
+			if(it->getDataAdmissao().getDifference() <= 90)
+			{
+				std::cout << *it << std::endl;
+			}
+		}
+	}
+	else
+	{
+		std::cout << std::endl << "Não foi possível encontrar funcionários que atendam o critério" << std::endl;
 	}
 }
 
@@ -84,7 +105,7 @@ Empresa::addAumento(int porcentagem)
 	}
 	else
 	{
-		std::cout << "Não há funcionários para ajustar o salário" << std::endl;
+		std::cout << std::endl << "Não há empresas cadastradas!" << std::endl;
 	}		
 }
 

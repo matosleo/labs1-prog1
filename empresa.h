@@ -4,6 +4,7 @@
 #include <iostream>
 #include <list>
 #include "funcionario.h"
+#include <iomanip>
 
 using std::list;
 
@@ -23,10 +24,11 @@ public:
 	~Empresa();
 
 	string getNome();
-	string getCnpj();
+	static int getTotalEmpresas();
 
 	void addFuncionario();
 	void listarFuncionarios();
+	void listarFuncionariosPorCriterio();
 	void addAumento(int porcentagem);
 	
 	friend std::ostream& operator<<(std::ostream &o, Empresa const f);

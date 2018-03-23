@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "data.h"
+#include <iomanip>
 
 using std::string;
 
@@ -18,7 +19,7 @@ public:
 	Funcionario();
 	~Funcionario();
 
-	string getNome();
+	static int getTotalFuncionarios();
 	double getSalario();
 	void setSalario(int);
 	Data getDataAdmissao();

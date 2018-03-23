@@ -8,7 +8,9 @@ void criarEmpresa(std::list<Empresa> &lista);
 void listarEmpresas(std::list<Empresa> lista);
 void addFuncEmpresa(std::list<Empresa> &lista, std::string nomeEmpresa);
 void exibirFuncEmpresa(std::list<Empresa> lista, std::string nomeEmpresa);
+void exibirFuncEmpresaPorCriterio(std::list<Empresa> lista, std::string nomeEmpresa);
 void ajustaSalarioFuncEmpresa(std::list<Empresa> &lista, std::string nomeEmpresa);
+int mediaFuncionariosEmpresas();
 
 int main(int argc, char const *argv[])
 {
@@ -18,11 +20,12 @@ int main(int argc, char const *argv[])
 	int opcao;
 
 	do {
-		std::cout
+		std::cout << std::endl
 		<< " 1 - Criar Empresa\n"
 		<< " 2 - Adicionar Funcionário\n"
 		<< " 3 - Exibir Funcionarios\n"
 		<< " 4 - Ajustar Aumento Salarial\n"
+		<< " 5 - Média Funcionarios/Empresas\n"
 		<< " 0 - Sair\n"
 		<< "\n"
 		<< " Opção: ";
@@ -50,14 +53,42 @@ int main(int argc, char const *argv[])
 
 			case 3:
 			{
-				listarEmpresas(lista_empresas);
-				if(lista_empresas.size() > 0)
+				std::cout << std::endl
+				<< " 1 - Exibir Todos\n"
+				<< " 2 - Contratados recente\n"
+				<< "\n"
+				<< " Opção: ";
+				int escolha;
+				std::cin >> escolha;
+				
+				if(escolha  == 1)
 				{
-					std::cout << "Qual empresa deseja listar os funcionários? Digite o nome" << std::endl;
-					std::string nomeEmpresa;
-					std::cin >> nomeEmpresa;
-					exibirFuncEmpresa(lista_empresas, nomeEmpresa);
+					listarEmpresas(lista_empresas);
+					if(lista_empresas.size() > 0)
+					{
+						std::cout << "Qual empresa deseja listar os funcionários? Digite o nome" << std::endl;
+						std::string nomeEmpresa;
+						std::cin >> nomeEmpresa;
+						exibirFuncEmpresa(lista_empresas, nomeEmpresa);
+					}
 				}
+				else if (escolha  == 2)
+				{
+					listarEmpresas(lista_empresas);
+					if(lista_empresas.size() > 0)
+					{
+						std::cout << "Qual empresa deseja LISTAR os funcionários? Digite o nome" << std::endl;
+						std::string nomeEmpresa;
+						std::cin >> nomeEmpresa;
+						exibirFuncEmpresaPorCriterio(lista_empresas, nomeEmpresa);
+					}
+
+				}
+				else
+				{
+					std::cout << std::endl << "opção inválida!" << std::endl;
+				}
+
 				break;	
 			}
 
@@ -75,15 +106,28 @@ int main(int argc, char const *argv[])
 				break;
 			}
 
+			case 5:
+			{
+				if(lista_empresas.size() > 0)
+				{
+					std::cout << std::endl << "As empresas tem em média " << mediaFuncionariosEmpresas() << " funcionários contratados" << std::endl;
+				}
+				else
+				{
+					std::cout << std::endl << "Não há empresas cadastradas!" << std::endl;
+				}
+				break;
+			}
+
 			case 0:
 			{
-				std::cout << "Até logo!" << std::endl;
+				std::cout << std::endl <<  "Até logo!" << std::endl;
 				break;
 			}
 
 			default:
 			{
-				std::cout << "!ERRO!\n"
+				std::cout << std::endl << "!ERRO!\n"
 				<< "Digite uma opção válida"
 				<< std::endl;
 				break;
@@ -113,12 +157,12 @@ void criarEmpresa(std::list<Empresa> &lista)
 	}
 	if(existe)
 	{
-		std::cout << "Esta empresa já existe!" << std::endl;
+		std::cout << std::endl << "Esta empresa já existe!" << std::endl;
 	} 
 	else
 	{
 		lista.push_back(e);
-		std::cout << "Empresa adicionada com sucesso!" << std::endl;
+		std::cout << std::endl << "Empresa adicionada com sucesso!" << std::endl;
 	}
 }
 
@@ -135,7 +179,7 @@ void listarEmpresas(std::list<Empresa> lista)
 	}
 	else
 	{
-		std::cout << "Não há empresas cadastradas!" << std::endl;
+		std::cout << std::endl << "Não há empresas cadastradas!" << std::endl;
 	}
 }
 
@@ -155,7 +199,7 @@ void addFuncEmpresa(std::list<Empresa> &lista, std::string nomeEmpresa)
 	}
 	if(!achou)
 	{ 
-		std::cout << "Não foi possível encontrar " << nomeEmpresa << " em nossos dados. Tente novamente." << std::endl;
+		std::cout << std::endl << "Não foi possível encontrar " << nomeEmpresa << " em nossos dados. Tente novamente." << std::endl;
 	}
 }
 
@@ -172,9 +216,28 @@ void exibirFuncEmpresa(std::list<Empresa> lista, std::string nomeEmpresa)
 	}
 	if(!achou)
 	{ 
-		std::cout << "Não foi possível encontrar " << nomeEmpresa << " em nossos dados. Tente novamente." << std::endl;
+		std::cout << std::endl << "Não foi possível encontrar " << nomeEmpresa << " em nossos dados. Tente novamente." << std::endl;
 	}	
 }
+
+void exibirFuncEmpresaPorCriterio(std::list<Empresa> lista, std::string nomeEmpresa)
+{
+	bool achou = false;
+	for(std::list<Empresa>::iterator it = lista.begin(); it != lista.end(); ++it)
+	{
+		if((it->getNome().compare(nomeEmpresa)) == 0)
+		{
+			it->listarFuncionariosPorCriterio();	
+			achou = true;
+		}
+	}
+	if(!achou)
+	{ 
+		std::cout << std::endl << "Não foi possível encontrar " << nomeEmpresa << " em nossos dados. Tente novamente." << std::endl;
+	}
+}
+
+
 
 void ajustaSalarioFuncEmpresa(std::list<Empresa> &lista, std::string nomeEmpresa)
 {
@@ -187,12 +250,17 @@ void ajustaSalarioFuncEmpresa(std::list<Empresa> &lista, std::string nomeEmpresa
 			std::cout << "Digite a porcentagem que deseja ajustar: ";
 			std::cin >> porcentagem;
 			it->addAumento(porcentagem);
-			std::cout << "Ajuste feito com sucesso!" << std::endl;
+			std::cout << std::endl << "Ajuste feito com sucesso!" << std::endl;
 			achou = true;
 		}
 	}
 	if(!achou)
 	{ 
-		std::cout << "Não foi possível encontrar " << nomeEmpresa << " em nossos dados. Tente novamente." << std::endl;
+		std::cout << std::endl << "Não foi possível encontrar " << nomeEmpresa << " em nossos dados. Tente novamente." << std::endl;
 	}	
+}
+
+int mediaFuncionariosEmpresas()
+{
+	return Funcionario::getTotalFuncionarios()/Empresa::getTotalEmpresas(); 
 }

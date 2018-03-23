@@ -10,12 +10,12 @@ Funcionario::Funcionario()
 }
 
 Funcionario::~Funcionario(){}
-
-string
-Funcionario::getNome()
-{
-	return m_nome;
-}
+ 
+int 
+Funcionario::getTotalFuncionarios()
+ {
+ 	return m_total_funcionarios;
+ }
 
 double
 Funcionario::getSalario()
@@ -38,7 +38,7 @@ Funcionario::getDataAdmissao()
 std::ostream& 
 operator<<(std::ostream &o, Funcionario const f)
 {
-	o << f.m_nome << " - R$" << std::fixed << std::setprecision(2) << f.m_salario << " - " << f.m_data_admissao;
+	o << std::setw(12) << std::left << f.m_nome << " | R$" << std::setw(9) << std::left << std::fixed << std::setprecision(2) << f.m_salario  << " | " << f.m_data_admissao;
 	return o;
 }
 
