@@ -9,7 +9,8 @@ Funcionario::Funcionario()
 	m_total_funcionarios++;
 }
 
-Funcionario::~Funcionario(){}
+Funcionario::~Funcionario(){
+}
  
 int 
 Funcionario::getTotalFuncionarios()

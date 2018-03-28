@@ -10,7 +10,8 @@ Empresa::Empresa()
 	m_total_empresas++;
 }
 
-Empresa::~Empresa(){}
+Empresa::~Empresa(){
+}
 
 
 string
