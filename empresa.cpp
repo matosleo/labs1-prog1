@@ -1,5 +1,4 @@
 #include "empresa.h"
-#include <string>
 
 int Empresa::m_total_empresas = 0;
 

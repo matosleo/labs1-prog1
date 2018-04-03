@@ -77,11 +77,24 @@ operator<<(std::ostream &o, Data const data)
 std::istream& 
 operator>>(std::istream &i, Data &data)
 {
-	std::cout << "Dia: ";
-	i >> data.m_dia;
-	std::cout << "Mês: ";
-	i >> data.m_mes;
-	std::cout << "Ano: ";
-	i >> data.m_ano;
+    int valido = false;
+    while(!valido)
+    {
+    	std::cout << "Dia: ";
+    	i >> data.m_dia;
+    	std::cout << "Mês: ";
+    	i >> data.m_mes;
+    	std::cout << "Ano: ";
+    	i >> data.m_ano;
+
+        if(data.getDifference() >= 0)
+        {
+            valido = true;
+        }
+        else
+        {
+            std::cout << "ERRO: Digite uma data válida" << std::endl;
+        }
+    }
 	return i;
 }

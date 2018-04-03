@@ -1,10 +1,10 @@
 #ifndef EMPRESA_H 
 #define EMPRESA_H
 
+#include "funcionario.h"
 #include <iostream>
 #include <list>
-#include "funcionario.h"
-#include <iomanip>
+#include <string>
 
 using std::list;
 

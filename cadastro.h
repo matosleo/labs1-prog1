@@ -1,11 +1,11 @@
 #ifndef CADASTRO_H
 #define CADASTRO_H
 
+#include "empresa.h"
+#include "funcionario.h"
 #include <iostream>
 #include <list>
 #include <string>
-#include "empresa.h"
-#include "funcionario.h"
 
 using std::list;
 

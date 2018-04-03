@@ -1,8 +1,9 @@
 #ifndef FUNCIONARIO_H 
 #define FUNCIONARIO_H
 
-#include <iostream>
 #include "data.h"
+#include <iostream>
+#include <string>
 #include <iomanip>
 
 using std::string;

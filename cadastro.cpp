@@ -13,9 +13,9 @@ Cadastro::menu()
 		std::cout << std::endl
 		<< " 1 - Criar Empresa\n"
 		<< " 2 - Adicionar Funcionário\n"
-		<< " 3 - Exibir Funcionarios\n"
+		<< " 3 - Exibir Funcionários\n"
 		<< " 4 - Ajustar Aumento Salarial\n"
-		<< " 5 - Média Funcionarios/Empresas\n"
+		<< " 5 - Média Funcionários/Empresas\n"
 		<< " 0 - Sair\n"
 		<< "\n"
 		<< " Opção: ";
@@ -45,7 +45,7 @@ Cadastro::menu()
 			{
 				std::cout << std::endl
 				<< " 1 - Exibir Todos\n"
-				<< " 2 - Contratados recente\n"
+				<< " 2 - Contratados Recentes\n"
 				<< "\n"
 				<< " Opção: ";
 				int escolha;
@@ -238,8 +238,20 @@ Cadastro::ajustaSalarioFuncEmpresa(std::list<Empresa> &lista, std::string nomeEm
 		if((it->getNome().compare(nomeEmpresa)) == 0)
 		{
 			int porcentagem;
-			std::cout << "Digite a porcentagem que deseja ajustar: ";
-			std::cin >> porcentagem;
+			bool valido = false;
+			while(!valido)
+			{
+				std::cout << "Digite a porcentagem que deseja ajustar: ";
+				std::cin >> porcentagem;
+				if(porcentagem <= 0)
+				{
+					std::cout << "Digite uma valor válido" << std::endl;
+				}
+				else
+				{
+					valido = true;
+				}
+			}
 			it->addAumento(porcentagem);
 			std::cout << std::endl << "Ajuste feito com sucesso!" << std::endl;
 			achou = true;

@@ -1,6 +1,4 @@
 #include "funcionario.h"
-#include <string>
-#include <iomanip> 
 
 int Funcionario::m_total_funcionarios = 0;
 
